@@ -1,41 +1,39 @@
-import { Component , OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../services/productos.service';
-import { Producto } from '../models/producto.model';
 import { FiltroPipe } from '../filtro.pipe';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Producto } from '../models/producto.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
-  templateUrl: './listado.component.html',
-  styleUrl: './listado.component.css',
   standalone: true,
-  imports: [CommonModule, FiltroPipe, FormsModule]
-
+  templateUrl: './listado.component.html',
+  styleUrls: ['./listado.component.css'],
+  imports: [CommonModule, RouterModule, FiltroPipe, FormsModule]
 })
 export class ListadoComponent implements OnInit {
-  productos: any[]= [];
+
+  productos: Producto[] = [];   
   busqueda: string = "";
   limite: number = 5;
 
   constructor(private productosService: ProductosService) {}
 
   ngOnInit(): void {
-    this.caragaProductos();
+    this.cargarProductos();
   }
 
-  caragaProductos(){
+  cargarProductos(){
     this.productosService.getProductos().subscribe({
-
-      next:(resp)=>{
-        this.productos= resp;
-        console.log("productos: ",this.productos)
-        //this.productos = resp.data; 
+      next: (resp) => {
+        this.productos = resp.data;        
+        console.log("Productos cargados: ", this.productos);
       },
-      error:(err)=>{
-        console.log("Error en cargar productos: ", err);
+      error: (err) => {
+        console.error("Error en cargar productos: ", err);
       }
-    })
+    });
   }
-
 }

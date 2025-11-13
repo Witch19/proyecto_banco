@@ -1,1 +1,55 @@
-<p>agregar works!</p>
+<div class="contenedor-form">
+  <h2>Agregar Producto</h2>
+
+  <form [formGroup]="productoForm" (ngSubmit)="agregar()">
+
+    <!-- ID -->
+    <label>ID</label>
+    <input type="text" class="campo" formControlName="id" placeholder="Ingresa el ID" />
+    <p class="error" *ngIf="productoForm.get('id')?.invalid && productoForm.get('id')?.touched">
+      El ID es obligatorio.
+    </p>
+
+    <!-- Nombre -->
+    <label>Nombre del producto</label>
+    <input type="text" class="campo" formControlName="name" placeholder="Ingresa el nombre del producto" />
+    <p class="error" *ngIf="productoForm.get('name')?.invalid && productoForm.get('name')?.touched">
+      El nombre es obligatorio.
+    </p>
+
+    <!-- Descripción -->
+    <label>Descripción</label>
+    <textarea class="campo" formControlName="description" placeholder="Ingresa la descripción"></textarea>
+    <p class="error" *ngIf="productoForm.get('description')?.invalid && productoForm.get('description')?.touched">
+      La descripción es obligatoria.
+    </p>
+
+    <!-- Logo -->
+    <label>Logo (URL)</label>
+    <input type="text" class="campo" formControlName="logo" placeholder="URL del logo" />
+    <p class="error" *ngIf="productoForm.get('logo')?.invalid && productoForm.get('logo')?.touched">
+      El logo es obligatorio.
+    </p>
+
+    <!-- Fecha de liberación -->
+    <label>Fecha de liberación</label>
+    <input type="date" class="campo" formControlName="date_release" />
+    <p class="error" *ngIf="productoForm.get('date_release')?.invalid && productoForm.get('date_release')?.touched">
+      La fecha de liberación es obligatoria.
+    </p>
+
+    <!-- Fecha de reestructuración -->
+    <label>Fecha de reestructuración</label>
+    <input type="date" class="campo" formControlName="date_revision" />
+    <p class="error" *ngIf="productoForm.get('date_revision')?.invalid && productoForm.get('date_revision')?.touched">
+      La fecha de reestructuración es obligatoria.
+    </p>
+
+    <!-- Botones -->
+    <div class="botones">
+      <button type="submit" class="btn-crear">Agregar</button>
+      <button type="button" class="btn-limpiar" (click)="productoForm.reset()">Limpiar</button>
+    </div>
+
+  </form>
+</div>
