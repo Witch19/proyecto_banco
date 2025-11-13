@@ -1,0 +1,81 @@
+.contenedor {
+  padding: 20px;
+  background: #f5f7fa;
+}
+
+.input-busqueda {
+  width: 200px;
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+}
+
+table th {
+  text-align: left;
+  padding: 12px;
+  background: #eef0f4;
+}
+
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.busqueda-contenedor {
+  margin-bottom: 20px;
+}
+
+.input-busqueda {
+  width: 250px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  font-size: 14px;
+}
+
+.paginacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.paginacion span {
+  font-size: 14px;
+  color: #666;
+}
+
+.paginacion select {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 14px;
+}
+.paginacion select:hover {
+  border-color: #888;
+}
+
+.btn-agregar {
+  background: #4a74f5;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
