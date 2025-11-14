@@ -1,65 +1,133 @@
-.contenedor-form {
-  width: 450px;
-  margin: 20px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+:host {
+  background: #f5f6fb;
+  min-height: 100vh;
+  display: block;
+  font-family: "Inter", sans-serif;
 }
 
+/* Caja del formulario EXACTA */
+.contenedor-form {
+  width: 520px;
+  background: #ffffff;
+  margin: 40px auto;
+  padding: 25px 35px 35px;
+  border-radius: 10px;
+  border: 1px solid #e0e3eb;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Título */
 h2 {
   text-align: center;
-  margin-bottom: 20px;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #333;
-}
-
-.campo {
+/* Línea debajo del título EXACTA */
+.linea {
   width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  font-size: 14px;
+  height: 2px;
+  background: #d7d7d7;
+  margin-top: 8px;
+  margin-bottom: 25px;
 }
 
-.campo.ng-invalid.ng-touched {
-  border-color: #e74c3c;
-}
-
-.error {
-  color: #e74c3c;
-  font-size: 12px;
-  margin-top: -5px;
-  margin-bottom: 10px;
-}
-
-.botones {
+/* Filas de dos columnas */
+.fila {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  gap: 18px;
+  margin-bottom: 12px;
+  /* Ajustado */
 }
 
-.btn-crear {
-  background: #4a74f5;
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+.campo-grupo {
+  width: 100%;
 }
 
+/* Labels */
+label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 3px;
+  display: block;
+}
+
+/* Inputs EXACTOS */
+.campo {
+  width: 89%;
+
+  padding: 7px 10px;
+  border: 1px solid #cfd3da;
+  border-radius: 4px;
+  background: #ffffff;
+  height: 34px;
+  /* Igual a imagen */
+  font-size: 13.5px;
+}
+
+.campo:focus {
+  border-color: #003366;
+  box-shadow: 0 0 5px rgba(0, 51, 102, 0.25);
+}
+
+/* Input disabled estilo gris igualito */
+.campo.disabled {
+  background: #ebebeb !important;
+  color: #7b7b7b !important;
+}
+
+/* Inputs inválidos */
+.invalido {
+  border-color: #e63946 !important;
+  background: #fff2f2 !important;
+}
+
+/* Texto error */
+.error {
+  color: #e63946;
+  font-size: 11.5px;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+/* Botones */
+.botones {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Botón gris */
 .btn-limpiar {
-  background: #bbb;
+  background: #d9dde6;
   border: none;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 8px;
+  padding: 9px 28px;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-limpiar:hover {
+  background: #caced9;
+}
+
+/* Botón amarillo */
+.btn-enviar {
+  background: #ffe36a;
+  border: none;
+  padding: 9px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-enviar:hover {
+  background: #f3d45d;
 }

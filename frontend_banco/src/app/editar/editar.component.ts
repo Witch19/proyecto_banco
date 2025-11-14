@@ -26,9 +26,8 @@ export class EditarComponent implements OnInit {
   route = inject(ActivatedRoute);
   router = inject(Router);
 
-  // 🔹 Inicializamos el formulario de una vez
   productoForm = new FormGroup({
-    id: new FormControl('', []), // sin validadores, lo mostramos deshabilitado en HTML
+    id: new FormControl('', []), 
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
@@ -79,7 +78,6 @@ export class EditarComponent implements OnInit {
       return;
     }
 
-    // 🔹 getRawValue() devuelve también los campos deshabilitados (como id)
     const productoEditado = this.productoForm.getRawValue() as Producto;
 
     console.log("Producto editado a enviar:", productoEditado);
@@ -88,7 +86,7 @@ export class EditarComponent implements OnInit {
       next: (resp) => {
         console.log("Producto actualizado", resp);
         alert("Producto actualizado correctamente");
-        this.router.navigate(['/']); // volver al listado
+        this.router.navigate(['/']); 
       },
       error: (err) => {
         console.error("Error al actualizar producto", err);
@@ -98,8 +96,6 @@ export class EditarComponent implements OnInit {
   }
 }
 
-
-// 🔥 Mismo validador de F4 / Agregar
 export const fechaRevisionValidator: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {

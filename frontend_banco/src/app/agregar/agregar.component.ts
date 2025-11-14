@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -9,6 +9,7 @@ import {
   ValidationErrors
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ProductosService } from '../services/productos.service';
 import { Producto } from '../models/producto.model';
 
@@ -20,6 +21,11 @@ import { Producto } from '../models/producto.model';
   styleUrls: ['./agregar.component.css']
 })
 export class AgregarComponent {
+
+  constructor(
+    private productosService: ProductosService,
+    private router: Router
+  ) {}
 
   productoForm = new FormGroup({
     id: new FormControl('', [
@@ -40,26 +46,18 @@ export class AgregarComponent {
     logo: new FormControl('', Validators.required),
     date_release: new FormControl('', Validators.required),
 
-    // 🔥 validación corregida y funcionando
+    // FECHA REVISIÓN = 1 año más (VALIDADOR)
     date_revision: new FormControl('', [
       Validators.required,
       fechaRevisionValidator
     ])
   });
 
-  productosService = inject(ProductosService);
-
   agregar() {
-    console.log("Formulario: ", this.productoForm.value);
-    console.log("entre a agregar");
-
     if (this.productoForm.invalid) {
       this.productoForm.markAllAsTouched();
-      console.warn("❌ Formulario inválido:", this.productoForm.errors);
       return;
     }
-
-    console.log("✅ Formulario válido, enviando al backend...");
 
     const producto: Producto = {
       id: this.productoForm.value.id!,
@@ -71,40 +69,35 @@ export class AgregarComponent {
     };
 
     this.productosService.crearProducto(producto).subscribe({
-      next: (resp) => {
-        console.log("Producto creado", resp);
+      next: () => {
         alert("Producto agregado correctamente");
-        this.reiniciar();
+
+        // 🔥 REGRESAR AUTOMÁTICAMENTE A LA LISTA
+        this.router.navigate(['/']);
       },
-      error: (err) => {
-        console.error("Error al crear el producto", err);
+      error: () => {
         alert("Error al agregar el producto");
       }
     });
   }
-
-  reiniciar() {
-    this.productoForm.reset();
-  }
 }
 
-// 🔥 VALIDADOR CORREGIDO
+/* 🔥 VALIDADOR: FECHA_REVISIÓN = FECHA_LIBERACIÓN + 1 AÑO */
 export const fechaRevisionValidator: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
 
-  if (!control.parent) return null;
+  const parent = control.parent;
+  if (!parent) return null;
 
-  const fechaLiberacion = control.parent.get('date_release')?.value;
+  const fechaLiberacion = parent.get('date_release')?.value;
   const fechaRevision = control.value;
 
-  // Si falta una fecha, no validamos aún
   if (!fechaLiberacion || !fechaRevision) return null;
 
   const liberacion = new Date(fechaLiberacion);
   const revision = new Date(fechaRevision);
 
-  // 🔥 Regla: revisión = liberación + 1 año EXACTO
   liberacion.setFullYear(liberacion.getFullYear() + 1);
 
   if (
@@ -112,8 +105,8 @@ export const fechaRevisionValidator: ValidatorFn = (
     revision.getMonth() === liberacion.getMonth() &&
     revision.getDate() === liberacion.getDate()
   ) {
-    return null; // ✔ válido
+    return null;
   }
 
-  return { fechaIncorrecta: true }; // ❌ incorrecto
+  return { fechaIncorrecta: true };
 };
