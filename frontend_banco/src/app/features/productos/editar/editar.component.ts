@@ -10,8 +10,8 @@ import {
   ValidationErrors
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ProductosService } from '../services/productos.service';
-import { Producto } from '../models/producto.model';
+import { ProductosService } from '../../../core/services/productos.service';
+import { Producto } from '../../../core/models/producto.model';
 
 @Component({
   selector: 'app-editar',

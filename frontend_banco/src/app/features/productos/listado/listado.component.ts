@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductosService } from '../services/productos.service';
-import { FiltroPipe } from '../filtro.pipe';
+import { ProductosService } from '../../../core/services/productos.service';
+import { FiltroPipe } from '../../../filtro.pipe';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Producto } from '../models/producto.model';
+import { Producto } from '../../../core/models/producto.model';
 import { RouterModule } from '@angular/router';
 
 @Component({

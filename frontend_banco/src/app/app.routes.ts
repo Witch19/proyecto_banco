@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { ListadoComponent } from './listado/listado.component';
-import { AgregarComponent } from './agregar/agregar.component';
+import { ListadoComponent } from './features/productos/listado/listado.component';
+import { AgregarComponent } from './features/productos/agregar/agregar.component';
 
 export const routes: Routes = [
   { path: '', component: ListadoComponent },   
   { path: 'agregar', component: AgregarComponent },
-  {path: 'editar/:id',loadComponent: () => import('./editar/editar.component').then(m => m.EditarComponent) }
+  {path: 'editar/:id',loadComponent: () => import('./features/productos/editar/editar.component').then(m => m.EditarComponent) }
 ];
 
 

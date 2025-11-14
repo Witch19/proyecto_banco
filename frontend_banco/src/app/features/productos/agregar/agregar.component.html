@@ -77,5 +77,10 @@
       <button type="submit" class="btn-enviar">Enviar</button>
     </div>
 
+    <div *ngIf="errorMsg" class="error-global">
+  {{ errorMsg }}
+</div>
+
+
   </form>
 </div>
