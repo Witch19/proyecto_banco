@@ -1,43 +1,52 @@
 <div class="contenedor-acciones">
-  <button class="btn-agregar" routerLink="/agregar">Agregar</button>
-  <!--a routerLink="/agregar">Ir a Agregar</a-->
+    <button class="btn-agregar" routerLink="/agregar">Agregar</button>
+    <!--a routerLink="/agregar">Ir a Agregar</a-->
 
 </div>
 
 <div class="busqueda-contenedor">
-  <input type="text" placeholder="Buscar..." [(ngModel)]="busqueda" />
+    <input type="text" placeholder="Buscar..." [(ngModel)]="busqueda" />
 </div>
 
 <div class="tabla-contenedor">
-  <table>
-    <thead>
-      <tr>
-        <th>Logo</th>
-        <th>Nombre del producto</th>
-        <th>Descripción</th>
-        <th>Fecha de liberación</th>
-        <th>Fecha de reestructuramiento</th>
-      </tr>
-    </thead>
+    <table>
+        <thead>
+            <tr>
+                <th>Logo</th>
+                <th>Nombre del producto</th>
+                <th>Descripción</th>
+                <th>Fecha de liberación</th>
+                <th>Fecha de reestructuramiento</th>
+            </tr>
+        </thead>
 
-    <tbody>
-      <tr *ngFor="let item of (productos | filtro: busqueda).slice(0, limite)">
-        <td><img [src]="item.logo" class="logo"></td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.date_release | date:'dd/MM/yyyy' }}</td>
-        <td>{{ item.date_revision | date:'dd/MM/yyyy' }}</td>
-      </tr>
-    </tbody>
-  </table>
+        <tbody>
+            <tr *ngFor="let item of (productos | filtro: busqueda).slice(0, limite)">
+                <td><img [src]="item.logo" class="logo"></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.date_release | date:'dd/MM/yyyy' }}</td>
+                <td>{{ item.date_revision | date:'dd/MM/yyyy' }}</td>
+                <td class="acciones">
+                    <div class="dropdown">
+                        <button class="btn-menu">⋮</button>
 
-  <div class="paginacion">
-    <span>{{ (productos | filtro: busqueda).length }} Resultados</span>
+                        <div class="dropdown-content">
+                            <a [routerLink]="['/editar', item.id]">Editar</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    <select [(ngModel)]="limite">
-      <option [value]="5">5</option>
-      <option [value]="10">10</option>
-      <option [value]="20">20</option>
-    </select>
-  </div>
+    <div class="paginacion">
+        <span>{{ (productos | filtro: busqueda).length }} Resultados</span>
+
+        <select [(ngModel)]="limite">
+            <option [value]="5">5</option>
+            <option [value]="10">10</option>
+            <option [value]="20">20</option>
+        </select>
+    </div>
 </div>

@@ -1,0 +1,29 @@
+<div class="contenedor-form">
+  <h2>Editar Producto</h2>
+
+  <form [formGroup]="productoForm" (ngSubmit)="guardar()">
+
+    <!-- ID (solo lectura) -->
+    <label>ID</label>
+    <input type="text" class="campo" formControlName="id" readonly />
+
+    <label>Nombre</label>
+    <input class="campo" formControlName="name" />
+
+    <label>Descripción</label>
+    <textarea class="campo" formControlName="description"></textarea>
+
+    <label>Logo (URL)</label>
+    <input class="campo" formControlName="logo" />
+
+    <label>Fecha de liberación</label>
+    <input type="date" class="campo" formControlName="date_release" />
+
+    <label>Fecha de reestructuración</label>
+    <input type="date" class="campo" formControlName="date_revision" />
+
+    <div class="botones">
+      <button class="btn-guardar" type="submit">Guardar cambios</button>
+    </div>
+  </form>
+</div>
